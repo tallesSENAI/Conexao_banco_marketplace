@@ -13,6 +13,7 @@ router.post('/anuncioCarro', (req, res) => {
     const modeloCarro = requisicao.body.modeloCarro;
     const anoCarro = requisicao.body.anoCarro;
     const precoCarro = requisicao.body.precoCarro;
+    
     const descricaoCarro = requisicao.body.descricaoCarro;
     const imagem = requisicao.body.imagem;
     

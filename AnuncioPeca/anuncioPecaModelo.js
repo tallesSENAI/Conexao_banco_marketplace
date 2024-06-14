@@ -1,45 +1,32 @@
 const Sequelize = require('sequelize');
 const conexao = require('../Conexao/conexao');
 
-const AnuncioCarro = conexao.define('anuncioCarro', {
-    codAnuncioCarro: {
+const AnuncioPeca = conexao.define('anuncioPeca', {
+    codAnuncioPeca: {
         type: Sequelize.INTEGER,
         allowNull: false,
         primaryKey: true, //PK
         autoIncrement: true
     },
-    tipoAnuncio: {
-        type: Sequelize.STRING(10),
+    descricaoPeca: {
+        type: Sequelize.STRING(300),
         allowNull: false
     },
-    cidade: {
-        type: Sequelize.STRING(65),
+    precoPeca: {
+        type: Sequelize.FLOAT(8),
         allowNull: false
     },
-    bairro: {
-        type: Sequelize.STRING(70),
+    imagemPeca: {
+        type: Sequelize.TEXT('long'),
         allowNull: false
     },
-    rua: {
-        type: Sequelize.STRING(70),
-        allowNull: false
-    },
-    complemento: {
-        type: Sequelize.STRING(50),
-        allowNull: false
-    },
-    CEP: {
-        type: Sequelize.CHAR(8),
-        allowNull: false,
-        unique: true
-    }
-    
+ 
 }, {
     timestamps: false
 });
 
-Endereco.sync({
+AnuncioPeca.sync({
     alter: true
 });
 
-module.exports = Endereco;
+module.exports = AnuncioPeca;
