@@ -1,26 +1,24 @@
 const express = require('express');
-const Anuncio = require('./anuncioCarroModelo');
+const AnuncioPeca = require('./anuncioPecaModelo');
 const router = express.Router();
 
-router.get('/anuncio', async (req, res) => {
-    const corretores = await Corretor.findAll();
-    resposta.send(corretores);
+router.get('/anuncioPeca', async (req, res) => {
+
+    const anuncioPeca = await AnuncioPeca.findAll();
+    resposta.send(anuncioPeca);
 });
 
-router.post('/corretor', (req, res) => {
-    const nome = requisicao.body.nome;
-    const CPF = requisicao.body.CPF;
-    const CNPJ = requisicao.body.CNPJ;
-    const dataNascimento = requisicao.body.dataNascimento;
-    const codigoEndereco = requisicao.body.enderecoId;
-    
-    Corretor.create({ 
+router.post('/anuncioPeca', (req, res) => {
 
-        nome: nome,
-        CPF: CPF,
-        CNPJ: CNPJ,
-        dataNascimento: dataNascimento,
-        enderecoId: codigoEndereco
+    const descricaoPeca = requisicao.body.descricaoPeca;
+    const precoPeca = requisicao.body.precoPeca;
+    const imagemPeca = requisicao.body.imagemPeca;
+    
+    AnuncioPeca.create({ 
+
+        descricaoPeca: descricaoPeca,
+        precoPeca: precoPeca,
+        imagemPeca: imagemPeca,
 
     }).then(() => {
         resposta.send('Cadastrado com sucesso.');
@@ -29,24 +27,23 @@ router.post('/corretor', (req, res) => {
     });
 });
 
-router.put('/corretor/:corretorId', (requisicao, resposta) => {
-    const codigoCorretor = requisicao.params.corretorId;
-    const codigoEndereco = requisicao.body.enderecoId;
-    const nome = requisicao.body.nome;
-    const CPF = requisicao.body.CPF;
-    const CNPJ = requisicao.body.CNPJ;
-    const dataNascimento = requisicao.body.dataNascimento;
+router.put('/anuncioPeca/:anuncioPecaId', (req, res) => {
 
-    Corretor.update({ 
-        enderecoId: codigoEndereco,
-        nome: nome,
-        CPF: CPF,
-        CNPJ: CNPJ,
-        dataNascimento: dataNascimento 
+    const descricaoPeca = requisicao.body.descricaoPeca;
+    const precoPeca = requisicao.body.precoPeca;
+    const imagemPeca = requisicao.body.imagemPeca;
+    const codigoAnuncioPeca = requisicao.params.anuncioPecaId;
+
+    AnuncioPeca.update({ 
+
+        descricaoPeca: descricaoPeca,
+        precoPeca: precoPeca,
+        imagemPeca: imagemPeca,
+        codigoAnuncioPeca: codigoAnuncioPeca,
     },
         { where:
             {
-                codigo: codigoCorretor
+                codigo: codigoAnuncioPeca
             }
         }).then(() => {
         resposta.send('Atualizado com sucesso.');
@@ -55,18 +52,21 @@ router.put('/corretor/:corretorId', (requisicao, resposta) => {
     });
 });
 
-router.delete('/corretor/:corretorId', (requisicao, resposta) => {
-    const codigoCorretor = requisicao.params.corretorId;
-    Corretor.destroy({ where: { codigo: codigoCorretor } }).then(() => {
+router.delete('/anuncioPeca/:anuncioPecaId', (req, res) => {
+
+    const codigoAnuncioPeca = requisicao.params.anuncioPecaId;
+
+    AnuncioPeca.destroy({ where: { codigo: codigoAnuncioPeca } }).then(() => {
         resposta.send('Removido com sucesso.');
     }).catch((erro) => {
         resposta.send('Ocorreu um erro: ' + erro);
     });
 });
 
-router.get('/corretor/:corretorId', async (requisicao, resposta) => {
-    const corretorId = requisicao.params.corretorId;
-    resposta.json(await Corretor.findByPk(corretorId));
+router.get('/anuncioPeca/:anuncioPecaId', async (req, res) => {
+
+    const codAnuncioPeca = requisicao.params.anuncioPecaId;
+    resposta.json(await AnuncioPeca.findByPk(codAnuncioPeca));
 });
 
 module.exports = router;

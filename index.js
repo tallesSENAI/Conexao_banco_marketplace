@@ -1,42 +1,62 @@
-const express = require ('express');
-const cors = require ('cors');
-const app = express();
-const usuarios = require ('./Conexao/conexao');
+const express = require('express');
+const meuServidor = express();
+meuServidor.use(express.json());
 
-//'cors' controla o acesso ao servidor
+//------------------------------------------------------------
+const rotasCadastroUsuario = require('./Usuario/UsuarioCadastro/usuarioCadastroControlador');
+meuServidor.use(rotasCadastroUsuario);
 
-app.use(express.json());
-app.use(cors());
-//----------------------------------------------------------------------------------
+const rotasAnuncioCarro = require('./AnuncioCarro/anuncioCarroControlador');
+meuServidor.use(rotasAnuncioCarro);
 
-//ROTAS USUÁRIOS
-app.get('/usuarios', (req, res) => { //get
-    res.json('Usuário selecionado');
-});
+const rotasAnuncioPeca = require('./AnuncioPeca/anuncioPecaControlador');
+meuServidor.use(rotasAnuncioPeca);
 
-app.post('/usuarios', (req, res) => { //post
-    res.json('Usuário CADASTRADO com sucesso!');
-});
+// const rotasLoginUsuario = require('./Usuario/UsuarioLogin/usuarioLoginControlador');
+// app.use(rotasLoginUsuario); (EM ANÁLISE PARA VER SE REALMENTE UMA ROTA PARA LOGIN É PRECISO)
 
-app.delete('/usuarios', (req, res) => { //delete
-    res.json('Usuário DELETADO com sucesso!');
-});
-//----------------------------------------------------------------------------------
 
-//ROTAS ANUNCIOS
-app.get('/anuncios', (req, res) => { //get
-    res.json('Anúncio selecionado.');
-});
 
-app.post('/anuncios', (req, res) => { //post
-    res.json('Anúncio POSTADO com sucesso!');
-});
 
-app.delete('/anuncios', (req, res) => { //delete
-    res.json('Anúncio DELETADO com sucesso!');
-});
+
+
+
 
 //----------------------------------------------------------------------------------
-app.listen(4300, () => {
-    console.log('AA');
+// //'cors' controla o acesso ao servidor
+
+// app.use(express.json());
+// 
+// //----------------------------------------------------------------------------------
+
+// //ROTAS USUÁRIOS
+// app.get('/usuarios', (req, res) => { //get
+//     res.json('Usuário selecionado');
+// });
+
+// app.post('/usuarios', (req, res) => { //post
+//     res.json('Usuário CADASTRADO com sucesso!');
+// });
+
+// app.delete('/usuarios', (req, res) => { //delete
+//     res.json('Usuário DELETADO com sucesso!');
+// });
+// //----------------------------------------------------------------------------------
+
+// //ROTAS ANUNCIOS
+// app.get('/anuncios', (req, res) => { //get
+//     res.json('Anúncio selecionado.');
+// });
+
+// app.post('/anuncios', (req, res) => { //post
+//     res.json('Anúncio POSTADO com sucesso!');
+// });
+
+// app.delete('/anuncios', (req, res) => { //delete
+//     res.json('Anúncio DELETADO com sucesso!');
+// });
+
+// //----------------------------------------------------------------------------------
+meuServidor.listen(4300, () => {
+    console.log('Conexão com arquivo INDEX bem sucedida!');
 });

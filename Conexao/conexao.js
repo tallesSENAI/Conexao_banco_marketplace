@@ -10,7 +10,7 @@ const conexao = new Sequelize('conexao_marketplace', 'root', 'root', {
 });
 
 conexao.authenticate().then(()=>{
-    console.log('conexao estabelecida');
+    console.log('Conexao estabelecida!');
 })
 .catch(error =>{
     console.log('Deu erro: ', error);

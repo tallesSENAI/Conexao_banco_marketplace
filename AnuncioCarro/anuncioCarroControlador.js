@@ -3,6 +3,7 @@ const AnuncioCarro = require('./anuncioCarroModelo');
 const router = express.Router();
 
 router.get('/anuncioCarro', async (req, res) => {
+
     const carros = await AnuncioCarro.findAll();
     resposta.send(carros);
 });
@@ -13,11 +14,8 @@ router.post('/anuncioCarro', (req, res) => {
     const modeloCarro = requisicao.body.modeloCarro;
     const anoCarro = requisicao.body.anoCarro;
     const precoCarro = requisicao.body.precoCarro;
-    
     const descricaoCarro = requisicao.body.descricaoCarro;
     const imagem = requisicao.body.imagem;
-    
-    const codigoAnuncioCarro = requisicao.body.codAnuncioCarro;
     
     AnuncioCarro.create({ 
 
@@ -27,7 +25,6 @@ router.post('/anuncioCarro', (req, res) => {
         precoCarro: precoCarro,
         descricaoCarro: descricaoCarro,
         imagem: imagem,
-        codigoAnuncioCarro: codigoAnuncioCarro
 
     }).then(() => {
         resposta.send('Cadastrado com sucesso.');
@@ -37,7 +34,7 @@ router.post('/anuncioCarro', (req, res) => {
 });
 
 router.put('/anuncioCarro/:anuncioCarroId', (req, res) => {
-    const codigoAnuncioCarro = requisicao.params.codAnuncioCarro;
+    const codigoAnuncioCarro = requisicao.params.anuncioCarroId;
 
     const classificacaoCarro = requisicao.body.classificacaoCarro;
     const modeloCarro = requisicao.body.modeloCarro;
@@ -54,7 +51,6 @@ router.put('/anuncioCarro/:anuncioCarroId', (req, res) => {
         precoCarro: precoCarro,
         descricaoCarro: descricaoCarro,
         imagem: imagem,
-        codigoAnuncioCarro: codigoAnuncioCarro
     },
         { where:
             {
@@ -69,7 +65,7 @@ router.put('/anuncioCarro/:anuncioCarroId', (req, res) => {
 
 router.delete('/anuncioCarro/:anuncioCarroId', (req, res) => {
 
-    const codigoAnuncioCarro = requisicao.params.codAnuncioCarro;
+    const codigoAnuncioCarro = requisicao.params.anuncioCarroId;
 
     AnuncioCarro.destroy({ where: { codigo: codigoAnuncioCarro } }).then(() => {
         resposta.send('Removido com sucesso.');
@@ -80,8 +76,9 @@ router.delete('/anuncioCarro/:anuncioCarroId', (req, res) => {
 
 router.get('/anuncioCarro/:anuncioCarroId', async (req, res) => {
 
-    const codigoAnuncioCarro = requisicao.params.codAnuncioCarro;
-    resposta.json(await AnuncioCarro.findByPk(codAnuncioCarro));
+    const codigoAnuncioCarro = requisicao.params.anuncioCarroId;
+    
+    resposta.json(await AnuncioCarro.findByPk(codigoAnuncioCarro));
 });
 
 module.exports = router;
