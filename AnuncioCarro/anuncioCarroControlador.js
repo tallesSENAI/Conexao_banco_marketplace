@@ -5,17 +5,17 @@ const router = express.Router();
 router.get('/anuncioCarro', async (req, res) => {
 
     const carros = await AnuncioCarro.findAll();
-    resposta.send(carros);
+    res.send(carros);
 });
 
 router.post('/anuncioCarro', (req, res) => {
 
-    const classificacaoCarro = requisicao.body.classificacaoCarro;
-    const modeloCarro = requisicao.body.modeloCarro;
-    const anoCarro = requisicao.body.anoCarro;
-    const precoCarro = requisicao.body.precoCarro;
-    const descricaoCarro = requisicao.body.descricaoCarro;
-    const imagem = requisicao.body.imagem;
+    const classificacaoCarro = req.body.classificacaoCarro;
+    const modeloCarro = req.body.modeloCarro;
+    const anoCarro = req.body.anoCarro;
+    const precoCarro = req.body.precoCarro;
+    const descricaoCarro = req.body.descricaoCarro;
+    const imagem = req.body.imagem;
     
     AnuncioCarro.create({ 
 
@@ -27,21 +27,21 @@ router.post('/anuncioCarro', (req, res) => {
         imagem: imagem,
 
     }).then(() => {
-        resposta.send('Cadastrado com sucesso.');
+        res.send('Cadastrado com sucesso.');
     }).catch((erro) => {
-        resposta.send('Ocorreu um erro: ' + erro);
+        res.send('Ocorreu um erro: ' + erro);
     });
 });
 
 router.put('/anuncioCarro/:anuncioCarroId', (req, res) => {
-    const codigoAnuncioCarro = requisicao.params.anuncioCarroId;
+    const codigoAnuncioCarro = req.params.anuncioCarroId;
 
-    const classificacaoCarro = requisicao.body.classificacaoCarro;
-    const modeloCarro = requisicao.body.modeloCarro;
-    const anoCarro = requisicao.body.anoCarro;
-    const precoCarro = requisicao.body.precoCarro;
-    const descricaoCarro = requisicao.body.descricaoCarro;
-    const imagem = requisicao.body.imagem;
+    const classificacaoCarro = req.body.classificacaoCarro;
+    const modeloCarro = req.body.modeloCarro;
+    const anoCarro = req.body.anoCarro;
+    const precoCarro = req.body.precoCarro;
+    const descricaoCarro = req.body.descricaoCarro;
+    const imagem = req.body.imagem;
 
     AnuncioCarro.update({ 
 
@@ -57,28 +57,28 @@ router.put('/anuncioCarro/:anuncioCarroId', (req, res) => {
                 codigo: codigoAnuncioCarro
             }
         }).then(() => {
-        resposta.send('Atualizado com sucesso.');
+        res.send('Atualizado com sucesso.');
     }).catch((erro) => {
-        resposta.send('Ocorreu um erro: ' + erro);
+        res.send('Ocorreu um erro: ' + erro);
     });
 });
 
 router.delete('/anuncioCarro/:anuncioCarroId', (req, res) => {
 
-    const codigoAnuncioCarro = requisicao.params.anuncioCarroId;
+    const codigoAnuncioCarro = req.params.anuncioCarroId;
 
     AnuncioCarro.destroy({ where: { codigo: codigoAnuncioCarro } }).then(() => {
-        resposta.send('Removido com sucesso.');
+        res.send('Removido com sucesso.');
     }).catch((erro) => {
-        resposta.send('Ocorreu um erro: ' + erro);
+        res.send('Ocorreu um erro: ' + erro);
     });
 });
 
 router.get('/anuncioCarro/:anuncioCarroId', async (req, res) => {
 
-    const codigoAnuncioCarro = requisicao.params.anuncioCarroId;
+    const codigoAnuncioCarro = req.params.anuncioCarroId;
     
-    resposta.json(await AnuncioCarro.findByPk(codigoAnuncioCarro));
+    res.json(await AnuncioCarro.findByPk(codigoAnuncioCarro));
 });
 
 module.exports = router;

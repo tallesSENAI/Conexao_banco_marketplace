@@ -1,14 +1,8 @@
 const Sequelize = require('sequelize');
 const conexao = require('../../Conexao/conexao');
 
-const Usuario = conexao.define('anuncioPeca', {
-    codAnuncioPeca: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        primaryKey: true, //PK
-        autoIncrement: true
-    },
-    descricaoPeca: {
+const UsuarioLogin = conexao.define('usuarioLogin', {
+    email: {
         type: Sequelize.STRING(300),
         allowNull: false
     },
@@ -16,17 +10,13 @@ const Usuario = conexao.define('anuncioPeca', {
         type: Sequelize.FLOAT(8),
         allowNull: false
     },
-    imagemPeca: {
-        type: Sequelize.TEXT('long'),
-        allowNull: false
-    },
- 
+
 }, {
     timestamps: false
 });
 
-AnuncioPeca.sync({
+UsuarioLogin.sync({
     alter: true
 });
 
-module.exports = AnuncioPeca;
+module.exports = UsuarioLogin;

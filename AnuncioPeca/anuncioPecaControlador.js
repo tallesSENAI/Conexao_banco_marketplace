@@ -5,14 +5,14 @@ const router = express.Router();
 router.get('/anuncioPeca', async (req, res) => {
 
     const anuncioPeca = await AnuncioPeca.findAll();
-    resposta.send(anuncioPeca);
+    res.send(anuncioPeca);
 });
 
 router.post('/anuncioPeca', (req, res) => {
 
-    const descricaoPeca = requisicao.body.descricaoPeca;
-    const precoPeca = requisicao.body.precoPeca;
-    const imagemPeca = requisicao.body.imagemPeca;
+    const descricaoPeca = req.body.descricaoPeca;
+    const precoPeca = req.body.precoPeca;
+    const imagemPeca = req.body.imagemPeca;
     
     AnuncioPeca.create({ 
 
@@ -21,18 +21,18 @@ router.post('/anuncioPeca', (req, res) => {
         imagemPeca: imagemPeca,
 
     }).then(() => {
-        resposta.send('Cadastrado com sucesso.');
+        res.send('Cadastrado com sucesso.');
     }).catch((erro) => {
-        resposta.send('Ocorreu um erro: ' + erro);
+        res.send('Ocorreu um erro: ' + erro);
     });
 });
 
 router.put('/anuncioPeca/:anuncioPecaId', (req, res) => {
 
-    const descricaoPeca = requisicao.body.descricaoPeca;
-    const precoPeca = requisicao.body.precoPeca;
-    const imagemPeca = requisicao.body.imagemPeca;
-    const codigoAnuncioPeca = requisicao.params.anuncioPecaId;
+    const descricaoPeca = req.body.descricaoPeca;
+    const precoPeca = req.body.precoPeca;
+    const imagemPeca = req.body.imagemPeca;
+    const codigoAnuncioPeca = req.params.anuncioPecaId;
 
     AnuncioPeca.update({ 
 
@@ -46,27 +46,27 @@ router.put('/anuncioPeca/:anuncioPecaId', (req, res) => {
                 codigo: codigoAnuncioPeca
             }
         }).then(() => {
-        resposta.send('Atualizado com sucesso.');
+        res.send('Atualizado com sucesso.');
     }).catch((erro) => {
-        resposta.send('Ocorreu um erro: ' + erro);
+        res.send('Ocorreu um erro: ' + erro);
     });
 });
 
 router.delete('/anuncioPeca/:anuncioPecaId', (req, res) => {
 
-    const codigoAnuncioPeca = requisicao.params.anuncioPecaId;
+    const codigoAnuncioPeca = req.params.anuncioPecaId;
 
     AnuncioPeca.destroy({ where: { codigo: codigoAnuncioPeca } }).then(() => {
-        resposta.send('Removido com sucesso.');
+        res.send('Removido com sucesso.');
     }).catch((erro) => {
-        resposta.send('Ocorreu um erro: ' + erro);
+        res.send('Ocorreu um erro: ' + erro);
     });
 });
 
 router.get('/anuncioPeca/:anuncioPecaId', async (req, res) => {
 
-    const codAnuncioPeca = requisicao.params.anuncioPecaId;
-    resposta.json(await AnuncioPeca.findByPk(codAnuncioPeca));
+    const codAnuncioPeca = req.params.anuncioPecaId;
+    res.json(await AnuncioPeca.findByPk(codAnuncioPeca));
 });
 
 module.exports = router;

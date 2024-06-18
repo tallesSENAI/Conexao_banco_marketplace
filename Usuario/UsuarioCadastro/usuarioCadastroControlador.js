@@ -2,18 +2,18 @@ const express = require('express');
 const CadastroUsuario = require('./usuarioCadastroModelo');
 const router = express.Router();
 
-router.get('/cadastroUsuario', async (req, res) => {
+router.get('/usuario', async (req, res) => {
     
     const usuariosCadastrados = await CadastroUsuario.findAll();
-    resposta.send(usuariosCadastrados);
+    res.json(usuariosCadastrados);
 });
 
-router.post('/cadastroUsuario', (req, res) => {
+router.post('/usuario', (req, res) => {
 
-    const nomeCadastroUsuario = requisicao.body.nomeCadastroUsuario;
-    const emailCadastroUsuario = requisicao.body.emailCadastroUsuario;
-    const telefoneCadastroUsuario = requisicao.body.telefoneCadastroUsuario;
-    const senhaCadastroUsuario = requisicao.body.senhaCadastroUsuario;
+    const nomeCadastroUsuario = req.body.nomeCadastroUsuario;
+    const emailCadastroUsuario = req.body.emailCadastroUsuario;
+    const telefoneCadastroUsuario = req.body.telefoneCadastroUsuario;
+    const senhaCadastroUsuario = req.body.senhaCadastroUsuario;
 
     CadastroUsuario.create({ 
 
@@ -23,20 +23,20 @@ router.post('/cadastroUsuario', (req, res) => {
         senhaCadastroUsuario: senhaCadastroUsuario,
 
     }).then(() => {
-        resposta.send('Cadastrado com sucesso.');
+        res.json('Cadastrado com sucesso.');
     }).catch((erro) => {
-        resposta.send('Ocorreu um erro: ' + erro);
+        res.json({message: 'Ocorreu um erro' +erro});
     });
 });
 
-router.put('/cadastroUsuario/:cadastroUsuarioId', (req, res) => {
+router.put('/usuario/:usuarioId', (req, res) => {
 
-    const nomeCadastroUsuario = requisicao.body.nomeCadastroUsuario;
-    const emailCadastroUsuario = requisicao.body.emailCadastroUsuario;
-    const telefoneCadastroUsuario = requisicao.body.telefoneCadastroUsuario;
-    const senhaCadastroUsuario = requisicao.body.senhaCadastroUsuario;
+    const nomeCadastroUsuario = req.body.nomeCadastroUsuario;
+    const emailCadastroUsuario = req.body.emailCadastroUsuario;
+    const telefoneCadastroUsuario = req.body.telefoneCadastroUsuario;
+    const senhaCadastroUsuario = req.body.senhaCadastroUsuario;
     
-    const codigoLoginUsuario = requisicao.params.cadastroUsuarioId;
+    const codigoLoginUsuario = req.params.cadastroUsuarioId;
 
     CadastroUsuario.update({ 
 
@@ -51,28 +51,28 @@ router.put('/cadastroUsuario/:cadastroUsuarioId', (req, res) => {
                 codigo: codigoLoginUsuario
             }
         }).then(() => {
-        resposta.send('Atualizado com sucesso.');
+        res.json('Atualizado com sucesso.');
     }).catch((erro) => {
-        resposta.send('Ocorreu um erro: ' + erro);
+        res.json({message: 'Ocorreu um erro' +erro});
     });
 });
 
-router.delete('/cadastroUsuario/:cadastroUsuarioId', (req, res) => {
+router.delete('/usuario/:usuarioId', (req, res) => {
 
-    const codigoLoginUsuario = requisicao.params.cadastroUsuarioId;
+    const codigoLoginUsuario = req.params.cadastroUsuarioId;
 
     CadastroUsuario.destroy({ where: { codigo: codigoLoginUsuario } }).then(() => {
-        resposta.send('Removido com sucesso.');
+        res.json('Removido com sucesso.');
     }).catch((erro) => {
-        resposta.send('Ocorreu um erro: ' + erro);
+        res.json('Ocorreu um erro: ' + erro);
     });
 });
 
-router.get('/cadastroUsuario/:cadastroUsuarioId', async (req, res) => {
+router.get('/usuario/:usuarioId', async (req, res) => {
 
-    const codigoLoginUsuario = requisicao.params.cadastroUsuarioId;
+    const codigoLoginUsuario = req.params.cadastroUsuarioId;
 
-    resposta.json(await CadastroUsuario.findByPk(codigoLoginUsuario));
+    res.json(await CadastroUsuario.findByPk(codigoLoginUsuario));
 });
 
 module.exports = router;
