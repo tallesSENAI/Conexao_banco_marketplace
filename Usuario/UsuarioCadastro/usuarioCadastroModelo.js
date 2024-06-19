@@ -9,23 +9,25 @@ const UsuarioCadastro = conexao.define('usuarioCadastro', {
         autoIncrement: true
     },
     nomeCadastroUsuario: { //primeiro e segundo nome apenas
-        type: Sequelize.STRING(),
+        type: Sequelize.STRING(100),
         allowNull: false
     },
     emailCadastroUsuario: {
         type: Sequelize.STRING(40),
-        allowNull: false
+        allowNull: false,
+        unique: true
     },
     telefoneCadastroUsuario: {
-        type: Sequelize.INTEGER,
-        allowNull: false
+        type: Sequelize.STRING(20),
+        allowNull: false,
+        unique: true
     },
     senhaCadastroUsuario: {
-        type: Sequelize.STRING(20),
+        type: Sequelize.STRING(30),
+        primaryKey: true, //PK
         allowNull: false
     },
     
- 
 }, {
     timestamps: false
 });
