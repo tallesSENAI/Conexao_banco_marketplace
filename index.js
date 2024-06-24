@@ -1,13 +1,10 @@
 const express = require('express');
 const cors = require ('cors');
-const bodyParser = require('body-parser');
 const meuServidor = express();
 
 meuServidor.use(express.json());
 meuServidor.use(cors());
 
-meuServidor.use(bodyParser.json({ limit: '50mb' }));
-meuServidor.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 //------------------------------------------------------------
 const rotasCadastroUsuario = require('./Usuario/UsuarioCadastro/usuarioCadastroControlador');
 meuServidor.use(rotasCadastroUsuario);
