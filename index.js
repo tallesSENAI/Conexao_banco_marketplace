@@ -9,14 +9,13 @@ meuServidor.use(cors());
 const rotasCadastroUsuario = require('./Usuario/UsuarioCadastro/usuarioCadastroControlador');
 meuServidor.use(rotasCadastroUsuario);
 
-// const rotasLoginUsuario = require('./Usuario/UsuarioLogin/usuarioLoginControlador');
-// meuServidor.use(rotasLoginUsuario);
+const rotasLoginUsuario = require('./Usuario/UsuarioLogin/usuarioLoginControlador');
+meuServidor.use(rotasLoginUsuario);
 
 const rotasAnuncioCarro = require('./AnuncioCarro/anuncioCarroControlador');
 meuServidor.use(rotasAnuncioCarro);
 
 const rotasAnuncioPeca = require('./AnuncioPeca/anuncioPecaControlador');
-const { application } = require('express');
 meuServidor.use(rotasAnuncioPeca);
 
 // const rotasLoginUsuario = require('./Usuario/UsuarioLogin/usuarioLoginControlador');

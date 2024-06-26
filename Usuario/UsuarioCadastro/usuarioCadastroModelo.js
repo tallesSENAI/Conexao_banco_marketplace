@@ -24,7 +24,6 @@ const UsuarioCadastro = conexao.define('usuarioCadastro', {
     },
     senhaCadastroUsuario: {
         type: Sequelize.STRING(30),
-        primaryKey: true, //PK
         allowNull: false
     },
     

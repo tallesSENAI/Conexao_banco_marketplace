@@ -28,10 +28,6 @@ const AnuncioCarro = conexao.define('anuncioCarro', {
         type: Sequelize.STRING(300),
         allowNull: false
     }, 
-    imagemCarro: {
-        type: Sequelize.TEXT('long'),
-        allowNull: false
-    },
 
 }, {
     timestamps: false

@@ -15,7 +15,6 @@ router.post('/anuncioCarro', (req, res) => {
     const anoCarro = req.body.anoCarro;
     const precoCarro = req.body.precoCarro;
     const descricaoCarro = req.body.descricaoCarro;
-    const imagem = req.body.imagemCarro;
     
     AnuncioCarro.create({ 
 
@@ -24,7 +23,6 @@ router.post('/anuncioCarro', (req, res) => {
         anoCarro: anoCarro,
         precoCarro: precoCarro,
         descricaoCarro: descricaoCarro,
-        imagemCarro: imagem
 
     }).then(() => {
         res.send('Cadastrado com sucesso.');
@@ -41,7 +39,6 @@ router.put('/anuncioCarro/:anuncioCarroId', (req, res) => {
     const anoCarro = req.body.anoCarro;
     const precoCarro = req.body.precoCarro;
     const descricaoCarro = req.body.descricaoCarro;
-    const imagem = req.body.imagemCarro;
 
     AnuncioCarro.update({ 
 
@@ -50,7 +47,6 @@ router.put('/anuncioCarro/:anuncioCarroId', (req, res) => {
         anoCarro: anoCarro,
         precoCarro: precoCarro,
         descricaoCarro: descricaoCarro,
-        imagemCarro: imagem,
     },
         { where:
             {

@@ -12,13 +12,13 @@ router.post('/anuncioPeca', (req, res) => {
 
     const descricaoPeca = req.body.descricaoPeca;
     const precoPeca = req.body.precoPeca;
-    const imagemPeca = req.body.imagemPeca;
+    const tituloPeca = req.body.tituloPeca;
     
     AnuncioPeca.create({ 
 
         descricaoPeca: descricaoPeca,
         precoPeca: precoPeca,
-        imagemPeca: imagemPeca,
+        tituloPeca: tituloPeca,
 
     }).then(() => {
         res.send('Cadastrado com sucesso.');
@@ -31,14 +31,14 @@ router.put('/anuncioPeca/:anuncioPecaId', (req, res) => {
 
     const descricaoPeca = req.body.descricaoPeca;
     const precoPeca = req.body.precoPeca;
-    const imagemPeca = req.body.imagemPeca;
+    const tituloPeca = req.body.tituloPeca;
     const codigoAnuncioPeca = req.params.anuncioPecaId;
 
     AnuncioPeca.update({ 
 
         descricaoPeca: descricaoPeca,
         precoPeca: precoPeca,
-        imagemPeca: imagemPeca,
+        tituloPeca: tituloPeca,
         codigoAnuncioPeca: codigoAnuncioPeca,
     },
         { where:
