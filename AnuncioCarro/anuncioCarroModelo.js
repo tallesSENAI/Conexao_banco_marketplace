@@ -27,8 +27,7 @@ const AnuncioCarro = conexao.define('anuncioCarro', {
     descricaoCarro: {
         type: Sequelize.STRING(300),
         allowNull: false
-    }, 
-
+    }
 }, {
     timestamps: false
 });

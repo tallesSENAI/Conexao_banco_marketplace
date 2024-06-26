@@ -22,7 +22,7 @@ router.post('/anuncioCarro', (req, res) => {
         modeloCarro: modeloCarro,
         anoCarro: anoCarro,
         precoCarro: precoCarro,
-        descricaoCarro: descricaoCarro,
+        descricaoCarro: descricaoCarro
 
     }).then(() => {
         res.send('Cadastrado com sucesso.');
