@@ -23,9 +23,9 @@ router.post('/usuario', (req, res) => {
         senhaCadastroUsuario: senhaCadastroUsuario,
 
     }).then(() => {
-        res.json('Cadastrado com sucesso.');
+        res.json({sucesso: true});
     }).catch((erro) => {
-        res.json({message: 'Ocorreu um erro' +erro});
+        res.json({message: 'Ocorreu um erro' +erro, sucesso: false});
     });
 });
 

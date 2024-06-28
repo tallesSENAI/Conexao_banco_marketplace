@@ -15,12 +15,7 @@ const AnuncioPeca = conexao.define('anuncioPeca', {
     precoPeca: {
         type: Sequelize.FLOAT(8),
         allowNull: false
-    },
-    imagemPeca: {
-        type: Sequelize.TEXT('long'),
-        allowNull: false
-    },
- 
+    }
 }, {
     timestamps: false
 });
